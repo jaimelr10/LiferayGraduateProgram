@@ -7,14 +7,10 @@ public class Product {
 	private String name;
 	private BigDecimal price;
 	private BigDecimal taxes;
-	private boolean isImported;
-	private boolean isBasicTaxFree;
 
 	public Product(String name, BigDecimal price, boolean isImported, boolean isBasicTaxFree) {
 		this.name = name;
 		this.price = price;
-		this.isImported = isImported;
-		this.isBasicTaxFree = isBasicTaxFree;
 		calculateTaxes(isImported, isBasicTaxFree);
 	}
 
@@ -32,13 +28,13 @@ public class Product {
 
 		BigDecimal finalTaxes = importTax.add(basicTax);
 		BigDecimal finalProductPrice = this.price.add(finalTaxes);
-		
+
 		BigDecimal roundedPrice = BigDecimal.valueOf(Math.ceil(finalProductPrice.doubleValue() * 100) / 100);
-		
+
 		this.setPrice(roundedPrice);
 		this.setTaxes(finalTaxes);
 	}
-
+ 
 	private BigDecimal roundTaxes(BigDecimal taxesCalculated) {
 		BigDecimal roundedTaxes = BigDecimal.valueOf(Math.ceil(taxesCalculated.doubleValue() * 20) / 20);
 		return roundedTaxes.setScale(2, RoundingMode.HALF_UP);
@@ -68,9 +64,7 @@ public class Product {
 		this.taxes = finalTaxes;
 	}
 
-	@Override
-	public String toString() {
-		return "Product [name=" + name + ", price=" + price + ", taxes=" + taxes + ", isImported=" + isImported
-				+ ", isBasicTaxFree=" + isBasicTaxFree + "]";
+	public String printProduct() {
+		return "1 " + name + " a " + price + " €";
 	}
 }
