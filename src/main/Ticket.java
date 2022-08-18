@@ -9,13 +9,13 @@ public class Ticket {
 	private List<Product> productList = new ArrayList<>();
 	private BigDecimal totalTaxes = BigDecimal.valueOf(0);
 	private BigDecimal totalPrice = BigDecimal.valueOf(0);
-	
+
 	public Ticket(List<Product> productList) {
 		this.productList = productList;
 		this.calculateCosts(productList);
 	}
 
-	private void calculateCosts(List<Product> productList) {
+	protected void calculateCosts(List<Product> productList) {
 		for (Product product : productList) {
 			this.setTotalPrice(this.totalPrice.add(product.getPrice()));
 			this.setTotalTaxes(this.totalTaxes.add(product.getTaxes()));
@@ -47,10 +47,10 @@ public class Ticket {
 	}
 
 	public void printTicket() {
-		for(Product product : this.productList) {
-			System.out.println("1 "+product.getName()+ ": "+product.getPrice()+"€");
+		for (Product product : this.productList) {
+			System.out.println("1 " + product.getName() + ": " + product.getPrice() + " €");
 		}
-		System.out.println("Impuestos sobre las ventas: "+this.getTotalTaxes()+" €");
-		System.out.println("Total: "+this.getTotalPrice()+" €");
+		System.out.println("Impuestos sobre las ventas: " + this.getTotalTaxes() + " €");
+		System.out.println("Total: " + this.getTotalPrice() + " €");
 	}
 }

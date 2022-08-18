@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class LiferayGraduateProgramExercise {
 
 	public static void main(String[] args) {
-		System.out.println("**********Welcome to my solution**********");
+		System.out.println("******************************************");
+		System.out.println("********* Welcome to my solution *********");
+		System.out.println("******************************************");
 
 		Scanner sc = new Scanner(System.in);
-		boolean close = false;
+		boolean closeMenu = false;
 
-		while (!close) {
+		while (!closeMenu) {
 			printMenu();
 			try {
 				byte menuOption = sc.nextByte();
@@ -50,22 +52,7 @@ public class Main {
 					productListInputThree.add(perfume);
 					productListInputThree.add(headachePils);
 					productListInputThree.add(importedChocolateBoxInput3);
-					Ticket ticketInputThree = new Ticket(productListInputThree);
-
-					System.out.println("\nEntrada 1:");
-					for (Product i : productListInputOne) {
-						System.out.println(i.printProduct());
-					}
-
-					System.out.println("\nEntrada 2:");
-					for (Product i : productListInputTwo) {
-						System.out.println(i.printProduct());
-					}
-
-					System.out.println("\nEntrada 3:");
-					for (Product i : productListInputThree) {
-						System.out.println(i.printProduct());
-					}
+					Ticket ticketInputThree = new Ticket(productListInputThree);		
 
 					System.out.println("\nResultado 1:");
 					ticketInputOne.printTicket();
@@ -73,29 +60,32 @@ public class Main {
 					ticketInputTwo.printTicket();
 					System.out.println("\nResultado 3:");
 					ticketInputThree.printTicket();
-
 					break;
 
 				case 2:
 					List<Product> productListInput = new ArrayList<>();
 
 					boolean continueAdding = true;
-					System.out.println("***********Introduce los valores solicitados**************");
+					System.out.println("*********** Introduce los valores solicitados **************");
 					while (continueAdding) {
-						System.out.println("Nombre del producto:");
-						String name = sc.next();
+						System.out.println("Nombre del producto (Ej: Tortilla de patatas):");
+						sc.nextLine();
+						String name = sc.nextLine();
 
-						System.out.println("Precio:");
+						System.out.println("Precio (Ej: 1,89):");
 						double price = sc.nextDouble();
+						if(price<0){
+							throw new Exception();
+						}
 
 						System.out.println("¿Es importado?(y/n):");
-						boolean isImported = (sc.next().equalsIgnoreCase("y"));
+						boolean isImported = checkYesNoInput(sc.next());
 
 						System.out.println("¿Es un libro, alimento o producto médico?(y/n):");
-						boolean isBasicTaxFree = (sc.next().equalsIgnoreCase("y"));
+						boolean isBasicTaxFree = checkYesNoInput(sc.next());
 
 						System.out.println("¿Quieres añadir otro producto?(y/n)");
-						continueAdding = (sc.next().equalsIgnoreCase("y"));
+						continueAdding = checkYesNoInput(sc.next());
 
 						Product product = new Product(name, BigDecimal.valueOf(price), isImported, isBasicTaxFree);
 						productListInput.add(product);
@@ -107,24 +97,37 @@ public class Main {
 					break;
 
 				case 3:
-					close = true;
+					System.out.println("¡Adiós!");
+					closeMenu = true;
 					break;
 
 				default:
-					System.out.println("\nPlease, select a valid option\n");
+					System.out.println("\nPor favor, selecciona una opción válida\n");
 					break;
 				}
 			} catch (Exception e) {
-				System.out.println("\nPlease, select a valid option\n");
-				sc.next();
+				System.out.println("\nPor favor, selecciona una opción válida\n");
+				sc.nextLine();
 			}
 		}
 		sc.close();
 	}
 
+	public static boolean checkYesNoInput(String yesNoInput) throws Exception {
+		boolean isTrue;
+		if(yesNoInput.equalsIgnoreCase("y")) {
+			isTrue = true;
+		}else if(yesNoInput.equalsIgnoreCase("n")) {
+			isTrue = false;
+		}else {
+			throw new Exception();
+		}
+		return isTrue;
+	}
+
 	private static void printMenu() {
-		System.out.println("\n******Menú******");
-		System.out.println("1. Use example products \n2. Provide my own products\n3. Exit");
+		System.out.println("\n****** Menú ******");
+		System.out.println("1. Usar productos del enunciado \n2. Introducir productos manualmente\n3. Salir");
 		System.out.println("Please, select the option you want to explore:");
 	}
 

@@ -14,7 +14,7 @@ public class Product {
 		calculateTaxes(isImported, isBasicTaxFree);
 	}
 
-	private void calculateTaxes(boolean isImported, boolean isBasicTaxFree) {
+	protected void calculateTaxes(boolean isImported, boolean isBasicTaxFree) {
 		BigDecimal importTax = new BigDecimal(0);
 		BigDecimal basicTax = new BigDecimal(0);
 
@@ -34,8 +34,8 @@ public class Product {
 		this.setPrice(roundedPrice);
 		this.setTaxes(finalTaxes);
 	}
- 
-	private BigDecimal roundTaxes(BigDecimal taxesCalculated) {
+
+	public BigDecimal roundTaxes(BigDecimal taxesCalculated) {
 		BigDecimal roundedTaxes = BigDecimal.valueOf(Math.ceil(taxesCalculated.doubleValue() * 20) / 20);
 		return roundedTaxes.setScale(2, RoundingMode.HALF_UP);
 	}
