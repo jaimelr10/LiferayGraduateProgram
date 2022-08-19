@@ -29,7 +29,9 @@ public class Product {
 		BigDecimal finalTaxes = importTax.add(basicTax);
 		BigDecimal finalProductPrice = this.price.add(finalTaxes);
 
-		this.setPrice(finalProductPrice);
+		BigDecimal roundedPrice = BigDecimal.valueOf(Math.ceil(finalProductPrice.doubleValue() * 100) / 100);
+
+		this.setPrice(roundedPrice);
 		this.setTaxes(finalTaxes);
 	}
 

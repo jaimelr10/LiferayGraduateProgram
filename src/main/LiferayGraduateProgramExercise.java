@@ -52,7 +52,7 @@ public class LiferayGraduateProgramExercise {
 					productListInputThree.add(perfume);
 					productListInputThree.add(headachePils);
 					productListInputThree.add(importedChocolateBoxInput3);
-					Ticket ticketInputThree = new Ticket(productListInputThree);	
+					Ticket ticketInputThree = new Ticket(productListInputThree);		
 
 					System.out.println("\nResultado 1:");
 					ticketInputOne.printTicket();
