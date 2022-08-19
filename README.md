@@ -1,7 +1,7 @@
 # LiferayGraduateProgram
 Este proyecto contiene la __solución__ que ofrezco al __ejercicio propuesto por Liferay__.
 
-El repositorio contiene el proyecto con el código desarrollado en __Java__ que resuelve el caso propuesto. La __carpeta /src__ contiene tanto el __código de la solución__ como algunos __tests__ que prueban la funcionalidad.
+El repositorio contiene el proyecto con el código desarrollado en __Java__ que resuelve el caso propuesto. La __carpeta /src__ engloba tanto el __código de la solución__ como algunos __tests__ que prueban la funcionalidad.
 
 
 ## El programa en funcionamiento
