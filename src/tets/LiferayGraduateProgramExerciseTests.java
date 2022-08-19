@@ -25,5 +25,4 @@ class LiferayGraduateProgramExerciseTests {
 		assertThrows(Exception.class, ()->LiferayGraduateProgramExercise.checkYesNoInput("invalid input"));
 	}
 	
-	
 }
